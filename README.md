@@ -10,27 +10,17 @@
 
 ### Features
 
-- [x] Defaults `NODE_ENV` to `development`.
-- [x] Customize `process.env` per-environment.
-- [x] Clearer, concise scripts.
-- [x] No more Bash-scripting in `package.json`.
-- [x] Simplify your workflow:
-  1. `npm install`
-  2. `npm start`
+- [x] Call npm stages based on `NODE_ENV` (defaults to `development`)
 
+### Changes from 1.x
 
+- [x] **BREAKING** Dropped support for per-env environment variables in package.json.<br>This change was made to simplify the implementation and to avoid potential conflicts with other packages that set environment variables (dot-env, etc.).
+- [x] Added support for different script runners (bun, yarn, etc).<br>Previously all scripts were run with npm, regardless of the runner used to run per-env.
+- [x] Added tests.
 ### Example
 
 ```js
 {
-  // Processes spawned by `per-env` inherit environment-specific
-  // variables, if defined.
-  "per-env": {
-    "production": {
-      "DOCKER_USER": "my",
-      "DOCKER_REPO": "project"
-    }
-  },
   "scripts": {
     // If NODE_ENV is missing, defaults to "development".
     "build": "per-env",
@@ -55,11 +45,6 @@
 
     "prestart:staging": "npm run build",
     "start:staging": "start-cluster build/server/server.js",
-
-    // Explicitly set NODE_ENV, which is helpful in CI.
-    "test": "NODE_ENV=test per-env",
-
-    "test:test": "mocha"
   }
 }
 ```

@@ -1,0 +1,11 @@
+# reject everything
+*
+
+# allow package.json
+!package.json
+
+# allow bin
+!bin/*
+
+# allow lib
+!lib/*

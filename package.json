@@ -1,41 +1,54 @@
 {
   "name": "per-env",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Clean up your package.json with per-NODE_ENV npm scripts",
-  "bin": {
-    "per-env": "./bin/per-env"
-  },
-  "scripts": {
-    "test": "NODE_ENV=development ./bin/per-env && NODE_ENV=test ./bin/per-env",
-    "posttest": "NODE_ENV=test npm run test:status",
-    "test:status": "./bin/per-env",
-    "test:status:test": "cat does.not.exist &> /dev/null && exit 1 || echo Status: $?",
-    "pretest:development": "echo ${npm_lifecycle_event} ${CUSTOM_VALUE}",
-    "test:development": "echo ${npm_lifecycle_event} ${CUSTOM_VALUE}",
-    "posttest:development": "echo ${npm_lifecycle_event} ${CUSTOM_VALUE}",
-    "pretest:test": "echo ${npm_lifecycle_event} ${CUSTOM_VALUE}",
-    "test:test": "echo ${npm_lifecycle_event} ${CUSTOM_VALUE}",
-    "posttest:test": "echo ${npm_lifecycle_event} ${CUSTOM_VALUE}"
-  },
-  "per-env": {
-    "development": {
-      "CUSTOM_VALUE": "dev"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ericclemmons/per-env.git"
-  },
   "keywords": [
     "npm",
     "run",
     "NODE_ENV",
     "scripts"
   ],
-  "author": "Eric Clemmons <eric@smarterspam.com>",
-  "license": "MIT",
+  "homepage": "https://github.com/hitorisensei/per-env#readme",
   "bugs": {
-    "url": "https://github.com/ericclemmons/per-env/issues"
+    "url": "https://github.com/hitorisensei/per-env/issues"
   },
-  "homepage": "https://github.com/ericclemmons/per-env#readme"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hitorisensei/per-env.git"
+  },
+  "license": "MIT",
+  "bin": {
+    "per-env": "./bin/per-env.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ],
+    "package.json": [
+      "sort-package-json"
+    ]
+  },
+  "dependencies": {
+    "which": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.4",
+    "@types/node": "^20.6.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^29.7.0",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "sort-package-json": "^2.5.1"
+  },
+  "authors": [
+    "Eric Clemmons <eric@smarterspam.com>",
+    "Piotr Bosak <hitori@duck.com>"
+  ]
 }
