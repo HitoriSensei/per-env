@@ -18,7 +18,7 @@
   },
   "license": "MIT",
   "bin": {
-    "per-env": "./bin/per-env.js"
+    "per-env": "bin/per-env.js"
   },
   "scripts": {
     "lint": "eslint .",
